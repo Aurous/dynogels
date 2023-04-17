@@ -3,12 +3,12 @@
 const dynogels = require('../index');
 const Joi = require('joi');
 
-const AWS = dynogels.AWS;
-
-dynogels.dynamoDriver(new AWS.DynamoDB({
+const credentials = {
   endpoint: 'http://localhost:8000',
   region: 'eu-west-1',
-}));
+};
+
+dynogels.setClient(credentials);
 
 const Account = dynogels.define('example-Account', {
   hashKey: 'AccountId',

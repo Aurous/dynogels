@@ -26,8 +26,9 @@ Dynogels is a [DynamoDB][5] data mapper for [node.js][1]. This project has been 
 First, you need to configure the [AWS SDK][2] with your credentials.
 
 ```js
-var dynogels = require('dynogels');
-dynogels.AWS.config.loadFromPath('credentials.json');
+const dynogels = require('dynogels');
+const credentials = require('credentials.json');
+dynogels.setClient(credentials);
 ```
 
 When running on EC2 it's recommended to leverage EC2 IAM roles. If you have configured your instance to use IAM roles,
@@ -35,8 +36,9 @@ Vogels will automatically select these credentials for use in your application,
 and you do not need to manually provide credentials in any other format.
 
 ```js
-var dynogels = require('dynogels');
-dynogels.AWS.config.update({region: "REGION"}); // region must be set
+const dynogels = require('dynogels');
+const credentials = {region: "REGION"}; // region must be set
+dynogels.setClient(credentials);
 ```
 
 You can also directly pass in your access key id, secret and region.
@@ -44,8 +46,9 @@ You can also directly pass in your access key id, secret and region.
   Use this method only for small personal scripts or for testing purposes.
 
 ```js
-var dynogels = require('dynogels');
-dynogels.AWS.config.update({accessKeyId: 'AKID', secretAccessKey: 'SECRET', region: "REGION"});
+const dynogels = require('dynogels');
+const credentials = {accessKeyId: 'AKID', secretAccessKey: 'SECRET', region: "REGION"};
+dynogels.setClient(credentials);
 ```
 
 Currently the following region codes are available in Amazon:
@@ -1259,7 +1262,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 [0]: https://github.com/clarkie/dynogels/tree/master/examples
 [1]: http://nodejs.org
-[2]: http://aws.amazon.com/sdkfornodejs
+[2]: https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/index.html
 [3]: http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/LSI.html
 [4]: http://aws.typepad.com/aws/2013/05/amazon-dynamodb-parallel-scans-and-other-good-news.html
 [5]: http://aws.amazon.com/dynamodb

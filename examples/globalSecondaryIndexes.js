@@ -8,8 +8,8 @@ const async = require('async');
 
 // http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/GSI.html
 
-const AWS = dynogels.AWS;
-AWS.config.update({ region: 'us-east-1' });
+const credentials = `${process.env.HOME}/.ec2/credentials.json`;
+dynogels.setClient(credentials);
 
 const GameScore = dynogels.define('example-global-index', {
   hashKey: 'userId',

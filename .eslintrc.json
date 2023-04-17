@@ -1,7 +1,11 @@
 {
   "extends": "airbnb-base",
   "env": {
-    "node": true
+    "node": true,
+    "es6": true
+  },
+  "parserOptions": {
+    "ecmaVersion": 2018
   },
   "rules": {
     "comma-dangle": [0],
@@ -21,6 +25,7 @@
     "object-curly-newline": [ "error", { "multiline": true, "consistent": true } ],
     "prefer-destructuring": [0],
     "no-multi-assign": [0],
-    "prefer-spread": [0]
+    "prefer-spread": [0],
+    "global-require": [0]
   }
 }

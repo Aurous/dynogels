@@ -6,8 +6,8 @@ const _ = require('lodash');
 const Joi = require('joi');
 const async = require('async');
 
-const AWS = dynogels.AWS;
-AWS.config.loadFromPath(`${process.env.HOME}/.ec2/credentials.json`);
+const credentials = `${process.env.HOME}/.ec2/credentials.json`;
+dynogels.setClient(credentials);
 
 const Account = dynogels.define('example-query-filter', {
   hashKey: 'name',
