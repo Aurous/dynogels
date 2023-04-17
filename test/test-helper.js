@@ -1,37 +1,45 @@
 'use strict';
 
 const sinon = require('sinon');
-const AWS = require('aws-sdk');
-const Table = require('../lib/table');
+const { DynamoDBClient } = require('@aws-sdk/client-dynamodb');
+const { DynamoDBDocumentClient } = require('@aws-sdk/lib-dynamodb');
+
+const opts = { endpoint: 'http://dynamodb-local:8000', apiVersion: '2012-08-10' };
+const Table = require('../lib/table')(opts);
 const _ = require('lodash');
 
 exports.mockDynamoDB = () => {
-  const opts = { endpoint: 'http://dynamodb-local:8000', apiVersion: '2012-08-10' };
-  const db = new AWS.DynamoDB(opts);
+  const client = new DynamoDBClient(opts);
 
-  db.scan = sinon.stub();
-  db.putItem = sinon.stub();
-  db.deleteItem = sinon.stub();
-  db.query = sinon.stub();
-  db.getItem = sinon.stub();
-  db.updateItem = sinon.stub();
-  db.createTable = sinon.stub();
-  db.describeTable = sinon.stub();
-  db.updateTable = sinon.stub();
-  db.deleteTable = sinon.stub();
-  db.batchGetItem = sinon.stub();
-  db.batchWriteItem = sinon.stub();
+  const DocClient = DynamoDBDocumentClient.from(client, {
+    marshallOptions: {
+      removeUndefinedValues: true
+    }
+  });
 
-  return db;
+  DocClient.scan = sinon.stub();
+  DocClient.putItem = sinon.stub();
+  DocClient.deleteItem = sinon.stub();
+  DocClient.query = sinon.stub();
+  DocClient.getItem = sinon.stub();
+  DocClient.updateItem = sinon.stub();
+  DocClient.createTable = sinon.stub();
+  DocClient.describeTable = sinon.stub();
+  DocClient.updateTable = sinon.stub();
+  DocClient.deleteTable = sinon.stub();
+  DocClient.batchGetItem = sinon.stub();
+  DocClient.batchWriteItem = sinon.stub();
+
+  return DocClient;
 };
 
 exports.realDynamoDB = () => {
   const opts = { endpoint: 'http://localhost:8000', apiVersion: '2012-08-10', region: 'eu-west-1' };
-  return new AWS.DynamoDB(opts);
+  return new DynamoDBClient(opts);
 };
 
 exports.mockDocClient = () => {
-  const client = new AWS.DynamoDB.DocumentClient({ service: exports.mockDynamoDB() });
+  const DocClient = exports.mockDynamoDB();
 
   const operations = [
     'batchGet',
@@ -45,23 +53,23 @@ exports.mockDocClient = () => {
   ];
 
   _.each(operations, (op) => {
-    client[op] = sinon.stub();
+    DocClient[op] = sinon.stub();
   });
 
-  client.service.scan = sinon.stub();
-  client.service.putItem = sinon.stub();
-  client.service.deleteItem = sinon.stub();
-  client.service.query = sinon.stub();
-  client.service.getItem = sinon.stub();
-  client.service.updateItem = sinon.stub();
-  client.service.createTable = sinon.stub();
-  client.service.describeTable = sinon.stub();
-  client.service.updateTable = sinon.stub();
-  client.service.deleteTable = sinon.stub();
-  client.service.batchGetItem = sinon.stub();
-  client.service.batchWriteItem = sinon.stub();
+  DocClient.scan = sinon.stub();
+  DocClient.putItem = sinon.stub();
+  DocClient.deleteItem = sinon.stub();
+  DocClient.query = sinon.stub();
+  DocClient.getItem = sinon.stub();
+  DocClient.updateItem = sinon.stub();
+  DocClient.createTable = sinon.stub();
+  DocClient.describeTable = sinon.stub();
+  DocClient.updateTable = sinon.stub();
+  DocClient.deleteTable = sinon.stub();
+  DocClient.batchGetItem = sinon.stub();
+  DocClient.batchWriteItem = sinon.stub();
 
-  return client;
+  return DocClient;
 };
 
 exports.mockSerializer = () => {

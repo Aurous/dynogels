@@ -6,8 +6,8 @@ const async = require('async');
 const util = require('util');
 const _ = require('lodash');
 
-const AWS = dynogels.AWS;
-AWS.config.loadFromPath(`${process.env.HOME}/.ec2/credentials.json`);
+const credentials = `${process.env.HOME}/.ec2/credentials.json`;
+dynogels.setClient(credentials);
 
 const DynamicModel = dynogels.define('example-dynamic-key', {
   hashKey: 'id',

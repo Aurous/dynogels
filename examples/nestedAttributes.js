@@ -6,8 +6,8 @@ const _ = require('lodash');
 const async = require('async');
 const Joi = require('joi');
 
-const AWS = dynogels.AWS;
-AWS.config.loadFromPath(`${process.env.HOME}/.ec2/credentials.json`);
+const credentials = `${process.env.HOME}/.ec2/credentials.json`;
+dynogels.setClient(credentials);
 
 const Movie = dynogels.define('example-nested-attribute', {
   hashKey: 'title',

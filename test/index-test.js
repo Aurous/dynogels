@@ -1,7 +1,7 @@
 'use strict';
 
 const dynogels = require('../index');
-const AWS = require('aws-sdk');
+const { DynamoDBDocumentClient } = require('@aws-sdk/lib-dynamodb');
 const helper = require('./test-helper');
 const Table = require('../lib/table');
 const chai = require('chai');
@@ -111,7 +111,11 @@ describe('dynogels', () => {
     it('should set document client', () => {
       const Account = dynogels.define('Account', { hashKey: 'id' });
 
-      const docClient = new AWS.DynamoDB.DocumentClient(helper.realDynamoDB());
+      const docClient = DynamoDBDocumentClient.from(helper.realDynamoDB(), {
+        marshallOptions: {
+          removeUndefinedValues: true
+        }
+      });
 
       Account.config({ docClient: docClient });
 

@@ -3,8 +3,8 @@
 const dynogels = require('../index');
 const Joi = require('joi');
 
-const AWS = dynogels.AWS;
-AWS.config.loadFromPath(`${process.env.HOME}/.ec2/credentials.json`);
+const credentials = `${process.env.HOME}/.ec2/credentials.json`;
+dynogels.setClient(credentials);
 
 const Person = dynogels.define('example-optional-attribute', {
   hashKey: 'id',

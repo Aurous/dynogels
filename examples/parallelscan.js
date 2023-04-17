@@ -5,8 +5,8 @@ const _ = require('lodash');
 const Joi = require('joi');
 const async = require('async');
 
-const AWS = dynogels.AWS;
-AWS.config.loadFromPath(`${process.env.HOME}/.ec2/credentials.json`);
+const credentials = `${process.env.HOME}/.ec2/credentials.json`;
+dynogels.setClient(credentials);
 
 const Product = dynogels.define('example-parallel-scan', {
   hashKey: 'id',
