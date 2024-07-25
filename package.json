@@ -28,26 +28,30 @@
   },
   "license": "MIT",
   "dependencies": {
-    "async": "2.5.0",
     "@aws-sdk/client-dynamodb": "3.306.0",
     "@aws-sdk/lib-dynamodb": "3.306.0",
     "@aws-sdk/util-dynamodb": "3.310.0",
+    "async": "^2.6.4",
     "lodash": "^4.17.15",
     "uuid": "3.1.0"
   },
   "devDependencies": {
     "chai": "4.1.2",
-    "coveralls": "3.0.0",
-    "eslint": "4.19.1",
-    "eslint-config-airbnb-base": "12.1.0",
-    "eslint-plugin-import": "2.14.0",
+    "eslint": "^8.9.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.25.2",
     "istanbul": "^0.4.4",
-    "joi": "^14.0.1",
+    "joi": "^17.13.3",
     "jscoverage": "^0.6.0",
-    "mocha": "5.2.0",
+    "mocha": "^10.7.0",
     "sinon": "4.0.1"
   },
-  "peerDependencies": {
-    "joi": "^14.0.1"
+  "overrides": {
+    "jscoverage": {
+      "debug": "^4.3.5",
+      "ejs": "^3.1.10",
+      "uglify-js": "^3.19.0"
+    },
+    "minimist": "1.2.8"
   }
 }
