@@ -33,6 +33,7 @@
     "@aws-sdk/util-dynamodb": "3.310.0",
     "async": "^2.6.4",
     "lodash": "^4.17.15",
+    "joi": "^17.13.3",
     "uuid": "3.1.0"
   },
   "devDependencies": {
@@ -41,7 +42,6 @@
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-import": "^2.25.2",
     "istanbul": "^0.4.4",
-    "joi": "^17.13.3",
     "jscoverage": "^0.6.0",
     "mocha": "^10.7.0",
     "sinon": "4.0.1"
