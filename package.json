@@ -28,9 +28,9 @@
   },
   "license": "MIT",
   "dependencies": {
-    "@aws-sdk/client-dynamodb": "3.306.0",
-    "@aws-sdk/lib-dynamodb": "3.306.0",
-    "@aws-sdk/util-dynamodb": "3.310.0",
+    "@aws-sdk/client-dynamodb": "^3.620.1",
+    "@aws-sdk/lib-dynamodb": "^3.620.1",
+    "@aws-sdk/util-dynamodb": "3.620.1",
     "async": "^2.6.4",
     "lodash": "^4.17.15",
     "joi": "^17.13.3",
@@ -47,6 +47,7 @@
     "sinon": "4.0.1"
   },
   "overrides": {
+    "fast-xml-parser": "4.4.1",
     "jscoverage": {
       "debug": "^4.3.5",
       "ejs": "^3.1.10",
